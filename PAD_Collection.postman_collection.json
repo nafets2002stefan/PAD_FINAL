@@ -1,0 +1,121 @@
+{
+	"info": {
+		"_postman_id": "d1914947-3a75-47bb-8282-eef7d40ed608",
+		"name": "PAD_Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32749866"
+	},
+	"item": [
+		{
+			"name": "http://localhost:5003/transaction",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": ".AspNetCore.Identity.Application=CfDJ8JoNNVw9DnVLoHpUgrgQIti72PlHK0q9m51lQZ_ry-P1wHt4iELEcuyAhLPtneTX887ix2gCbC77PMSvvv0Unp_2yjqvHnMZJ54SfdpOcwGdTgY9ttkulfXLEQg-DLxoytMMSBW26iHFReD192w8u9kUI2BOVD6ThAG9vFv4_qOxBRPo5YrJoZT_mYkfxWRfxLA_uaKoN9tKzTGn3y7-haRYPP4DDF-i1F8PgF4U4kFtmE4Z834rKBHHlnY7RM6qfSFZutwk-cDqvLn9icrQ5t3Eock9_62HFljSEXO6efO3ogVhUcGfUp1AR42jeX5_1zcjwXuSUn08IozP5gf5Bd6hk4yCqj8kB4blOrkB_G0eynMMJPngYkM91kMP7mfOCzlb7Pz8IJDfhUIhGV_NNRhEVVP7_SNhntqhHin5Wm84calZ4bHc96NmtflW7sXDI65w0vv4QpNPummVw1Rj4JsbzNg5oBcr8fh7XjILOMHtEQjLbfhxC2468jBNcIAA7uZgKSWAnU1W1DICyuu6s07ZJF5dmNI5ADbAhq4p6HmikkDPZ7ipo0aWtb8trxQR388MB_g8E6VSgTS1_Zg5UxxIuO09uYI_9i_6LTPGqX0BQyeC_v8e-HGVtHFWPUwwb0mXkCafq2S1rnJ5MFiNoOkQJH0YBYwgsNDijkdwHQX9-Di678Oy5l4ZzdKoGFtiglnWbYLUJjvquFDipotuWDwvccWxTUFixJtcYbOmQUixDQxrXWpCvmeGQwPkOv1890SYTz3eaAipXq8XI2GHNAumfMNOBIxQ9K5_YgFvDtuOjdJSPFJt_pr4H4ENrJKdhlfs28Ro_4ffioPeTTJlwIUl6IbFcvO3yLNAptK7w6Yzme8UHP7gpkcE9IeOULMFUwMCcz80NJiqEPQiHovU26YA2a7FfyUyGKoU5vROXIa1tLg48CvQGpdGgMy9ZfXK1o1gVPkMH2-Nbn58o3mrBrFsT9hWDlTZGArmCnw1aXAl5z1U8Y0H70dbDjSawCiAb5liY_2bfR9PukyLFxJk9awmYexPlMOqSMafK-if3TdrMk_uIJ0aQhgT0D3w0lh7shLlKZdvxvpjtVHVMQvxwJAoi6FdEa3lIDM_30P0ZWfrhEoezxiRhrwWGuZbU3KnyMtfisv2yzjibdcLEU16KQpXW2NCBEVxIb1T8P925BEw-g0rci8qz9MGv-NXCq95X8jw8LypJlI1SF3vJqDQDi-9tt_RIPgz3JxA9nTuCbXbl9SFo44pkyAmZhDYEWuYwvRVUHrT_IPMsg69a_3q5D6VZJU9wGNMP5SkIYxfJLQAdH6txvtyhP_IG2JcEo0Hej1NSeMgOlLX9FjiTgDfMwKWbfX0IPoi1J3N5e5rI4h8X5ozUJLbG7CJEJetzYtJywccm_I3sf58bhgByPmIB3I4nNI3ygldz1l0gDsX1FoQLz3FdXOtoS3COdeTLk19ss9aMTknNwdSc2hTydqeL3prUMEXsyukrxeWDGdWp0p2LFFUUyazy25yzucW_JjxhXv7xVJpPgwyLlhLqLac9pKJ20AjpwajMjJm53LALkuUcnW98xZWweNgm5AOxl1te4yk4G6OG2GA9t0Jspwdtlga8bxjiPwisfIg-v00A_NdsEnbDVOBZ1t-LYyCxSq-KU6X_4bQdXDMbg3tgGqbITvXDG7i01M42gkKVj3ybIwTiJ889pWmiGcGDd7OjgoCgkpiA4DEkm7hxEMIrqRDXBux0IYIKIYGI1tFHz77YmoMK_Ib4iKDcTsdEMWJPRyoHhTAItJY24AmOQGEedDAQiOTyT7gY43Blm54_HmDVthXfxr8sFfxF_6rMmfSAF9yCHIivikycrO1SlyS4JI52mp5nx1AkxKc2CXjlYPhRsBr3pzJTRKszodbF1rU7bQsuWTxQP1Qgv6guBc0QaWOMh00ekoCjwBw3a31-91RMKhgPmbV2jB3YhVxRGikvhJIKg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Stefan\",\r\n    \"price\": 2002\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5003/transaction",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5003",
+					"path": [
+						"transaction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5003/products",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": ".AspNetCore.Identity.Application=CfDJ8JoNNVw9DnVLoHpUgrgQIti72PlHK0q9m51lQZ_ry-P1wHt4iELEcuyAhLPtneTX887ix2gCbC77PMSvvv0Unp_2yjqvHnMZJ54SfdpOcwGdTgY9ttkulfXLEQg-DLxoytMMSBW26iHFReD192w8u9kUI2BOVD6ThAG9vFv4_qOxBRPo5YrJoZT_mYkfxWRfxLA_uaKoN9tKzTGn3y7-haRYPP4DDF-i1F8PgF4U4kFtmE4Z834rKBHHlnY7RM6qfSFZutwk-cDqvLn9icrQ5t3Eock9_62HFljSEXO6efO3ogVhUcGfUp1AR42jeX5_1zcjwXuSUn08IozP5gf5Bd6hk4yCqj8kB4blOrkB_G0eynMMJPngYkM91kMP7mfOCzlb7Pz8IJDfhUIhGV_NNRhEVVP7_SNhntqhHin5Wm84calZ4bHc96NmtflW7sXDI65w0vv4QpNPummVw1Rj4JsbzNg5oBcr8fh7XjILOMHtEQjLbfhxC2468jBNcIAA7uZgKSWAnU1W1DICyuu6s07ZJF5dmNI5ADbAhq4p6HmikkDPZ7ipo0aWtb8trxQR388MB_g8E6VSgTS1_Zg5UxxIuO09uYI_9i_6LTPGqX0BQyeC_v8e-HGVtHFWPUwwb0mXkCafq2S1rnJ5MFiNoOkQJH0YBYwgsNDijkdwHQX9-Di678Oy5l4ZzdKoGFtiglnWbYLUJjvquFDipotuWDwvccWxTUFixJtcYbOmQUixDQxrXWpCvmeGQwPkOv1890SYTz3eaAipXq8XI2GHNAumfMNOBIxQ9K5_YgFvDtuOjdJSPFJt_pr4H4ENrJKdhlfs28Ro_4ffioPeTTJlwIUl6IbFcvO3yLNAptK7w6Yzme8UHP7gpkcE9IeOULMFUwMCcz80NJiqEPQiHovU26YA2a7FfyUyGKoU5vROXIa1tLg48CvQGpdGgMy9ZfXK1o1gVPkMH2-Nbn58o3mrBrFsT9hWDlTZGArmCnw1aXAl5z1U8Y0H70dbDjSawCiAb5liY_2bfR9PukyLFxJk9awmYexPlMOqSMafK-if3TdrMk_uIJ0aQhgT0D3w0lh7shLlKZdvxvpjtVHVMQvxwJAoi6FdEa3lIDM_30P0ZWfrhEoezxiRhrwWGuZbU3KnyMtfisv2yzjibdcLEU16KQpXW2NCBEVxIb1T8P925BEw-g0rci8qz9MGv-NXCq95X8jw8LypJlI1SF3vJqDQDi-9tt_RIPgz3JxA9nTuCbXbl9SFo44pkyAmZhDYEWuYwvRVUHrT_IPMsg69a_3q5D6VZJU9wGNMP5SkIYxfJLQAdH6txvtyhP_IG2JcEo0Hej1NSeMgOlLX9FjiTgDfMwKWbfX0IPoi1J3N5e5rI4h8X5ozUJLbG7CJEJetzYtJywccm_I3sf58bhgByPmIB3I4nNI3ygldz1l0gDsX1FoQLz3FdXOtoS3COdeTLk19ss9aMTknNwdSc2hTydqeL3prUMEXsyukrxeWDGdWp0p2LFFUUyazy25yzucW_JjxhXv7xVJpPgwyLlhLqLac9pKJ20AjpwajMjJm53LALkuUcnW98xZWweNgm5AOxl1te4yk4G6OG2GA9t0Jspwdtlga8bxjiPwisfIg-v00A_NdsEnbDVOBZ1t-LYyCxSq-KU6X_4bQdXDMbg3tgGqbITvXDG7i01M42gkKVj3ybIwTiJ889pWmiGcGDd7OjgoCgkpiA4DEkm7hxEMIrqRDXBux0IYIKIYGI1tFHz77YmoMK_Ib4iKDcTsdEMWJPRyoHhTAItJY24AmOQGEedDAQiOTyT7gY43Blm54_HmDVthXfxr8sFfxF_6rMmfSAF9yCHIivikycrO1SlyS4JI52mp5nx1AkxKc2CXjlYPhRsBr3pzJTRKszodbF1rU7bQsuWTxQP1Qgv6guBc0QaWOMh00ekoCjwBw3a31-91RMKhgPmbV2jB3YhVxRGikvhJIKg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"TEst\",\r\n    \"price\": 123\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5003/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5003",
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:5003/products",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": ".AspNetCore.Identity.Application=CfDJ8JoNNVw9DnVLoHpUgrgQIti72PlHK0q9m51lQZ_ry-P1wHt4iELEcuyAhLPtneTX887ix2gCbC77PMSvvv0Unp_2yjqvHnMZJ54SfdpOcwGdTgY9ttkulfXLEQg-DLxoytMMSBW26iHFReD192w8u9kUI2BOVD6ThAG9vFv4_qOxBRPo5YrJoZT_mYkfxWRfxLA_uaKoN9tKzTGn3y7-haRYPP4DDF-i1F8PgF4U4kFtmE4Z834rKBHHlnY7RM6qfSFZutwk-cDqvLn9icrQ5t3Eock9_62HFljSEXO6efO3ogVhUcGfUp1AR42jeX5_1zcjwXuSUn08IozP5gf5Bd6hk4yCqj8kB4blOrkB_G0eynMMJPngYkM91kMP7mfOCzlb7Pz8IJDfhUIhGV_NNRhEVVP7_SNhntqhHin5Wm84calZ4bHc96NmtflW7sXDI65w0vv4QpNPummVw1Rj4JsbzNg5oBcr8fh7XjILOMHtEQjLbfhxC2468jBNcIAA7uZgKSWAnU1W1DICyuu6s07ZJF5dmNI5ADbAhq4p6HmikkDPZ7ipo0aWtb8trxQR388MB_g8E6VSgTS1_Zg5UxxIuO09uYI_9i_6LTPGqX0BQyeC_v8e-HGVtHFWPUwwb0mXkCafq2S1rnJ5MFiNoOkQJH0YBYwgsNDijkdwHQX9-Di678Oy5l4ZzdKoGFtiglnWbYLUJjvquFDipotuWDwvccWxTUFixJtcYbOmQUixDQxrXWpCvmeGQwPkOv1890SYTz3eaAipXq8XI2GHNAumfMNOBIxQ9K5_YgFvDtuOjdJSPFJt_pr4H4ENrJKdhlfs28Ro_4ffioPeTTJlwIUl6IbFcvO3yLNAptK7w6Yzme8UHP7gpkcE9IeOULMFUwMCcz80NJiqEPQiHovU26YA2a7FfyUyGKoU5vROXIa1tLg48CvQGpdGgMy9ZfXK1o1gVPkMH2-Nbn58o3mrBrFsT9hWDlTZGArmCnw1aXAl5z1U8Y0H70dbDjSawCiAb5liY_2bfR9PukyLFxJk9awmYexPlMOqSMafK-if3TdrMk_uIJ0aQhgT0D3w0lh7shLlKZdvxvpjtVHVMQvxwJAoi6FdEa3lIDM_30P0ZWfrhEoezxiRhrwWGuZbU3KnyMtfisv2yzjibdcLEU16KQpXW2NCBEVxIb1T8P925BEw-g0rci8qz9MGv-NXCq95X8jw8LypJlI1SF3vJqDQDi-9tt_RIPgz3JxA9nTuCbXbl9SFo44pkyAmZhDYEWuYwvRVUHrT_IPMsg69a_3q5D6VZJU9wGNMP5SkIYxfJLQAdH6txvtyhP_IG2JcEo0Hej1NSeMgOlLX9FjiTgDfMwKWbfX0IPoi1J3N5e5rI4h8X5ozUJLbG7CJEJetzYtJywccm_I3sf58bhgByPmIB3I4nNI3ygldz1l0gDsX1FoQLz3FdXOtoS3COdeTLk19ss9aMTknNwdSc2hTydqeL3prUMEXsyukrxeWDGdWp0p2LFFUUyazy25yzucW_JjxhXv7xVJpPgwyLlhLqLac9pKJ20AjpwajMjJm53LALkuUcnW98xZWweNgm5AOxl1te4yk4G6OG2GA9t0Jspwdtlga8bxjiPwisfIg-v00A_NdsEnbDVOBZ1t-LYyCxSq-KU6X_4bQdXDMbg3tgGqbITvXDG7i01M42gkKVj3ybIwTiJ889pWmiGcGDd7OjgoCgkpiA4DEkm7hxEMIrqRDXBux0IYIKIYGI1tFHz77YmoMK_Ib4iKDcTsdEMWJPRyoHhTAItJY24AmOQGEedDAQiOTyT7gY43Blm54_HmDVthXfxr8sFfxF_6rMmfSAF9yCHIivikycrO1SlyS4JI52mp5nx1AkxKc2CXjlYPhRsBr3pzJTRKszodbF1rU7bQsuWTxQP1Qgv6guBc0QaWOMh00ekoCjwBw3a31-91RMKhgPmbV2jB3YhVxRGikvhJIKg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"TEst\",\r\n    \"price\": 123\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5003/items",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5003",
+					"path": [
+						"items"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

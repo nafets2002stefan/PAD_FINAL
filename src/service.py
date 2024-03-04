@@ -15,7 +15,6 @@ app = Flask(__name__)
 
 
 app.config['SQLALCHEMY_DATABASE_URI'] = f"mssql+pyodbc://{os.environ['MSSQL_DB_USERNAME']}:{os.environ['MSSQL_DB_PASSWORD']}@{os.environ['MSSQL_DB_SERVER']}/{os.environ['MSSQL_DB_NAME']}?driver={os.environ['MSSQL_DRIVER']}"
-#app.config['SQLALCHEMY_DATABASE_URI'] = f"mssql+pyodbc://{MSSQL_DB_USERNAME}:{MSSQL_DB_PASSWORD}@{MSSQL_DB_SERVER}/{MSSQL_DB_NAME}?driver={MSSQL_DRIVER}"
 db_item.init_app(app)
 
 # Connect to MongoDB

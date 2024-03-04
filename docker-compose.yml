@@ -18,7 +18,7 @@ services:
       - MONGO_COLLECTION=products
       - MSSQL_DB_USERNAME=sa1
       - MSSQL_DB_PASSWORD=sa1
-      - MSSQL_DB_SERVER=sql_server  # Use the service name defined below
+      - MSSQL_DB_SERVER=sql_server
       - MSSQL_DB_NAME=pad_table
       - MSSQL_DRIVER=ODBC+Driver+17+for+SQL+Server
 
@@ -57,7 +57,7 @@ services:
   sql_server:
     image: mcr.microsoft.com/mssql/server:latest
     environment:
-      SA_PASSWORD: "sa1sa1sa1"  # Change this to your desired password
+      SA_PASSWORD: "sa1sa1sa1"
       ACCEPT_EULA: "Y"
     ports:
       - "1433:1433"
