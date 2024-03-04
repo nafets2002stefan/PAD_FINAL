@@ -5,11 +5,17 @@ from pymongo import MongoClient
 from item import *
 import redis
 import json
+import os  # Add this import statement
+
+# Change the SQLALCHEMY_DATABASE_URI to use the environment variables for Docker service
 
 app = Flask(__name__)
 
 # Configure SQL Alchemy
-app.config['SQLALCHEMY_DATABASE_URI'] = f"mssql+pyodbc://{MSSQL_DB_USERNAME}:{MSSQL_DB_PASSWORD}@{MSSQL_DB_SERVER}/{MSSQL_DB_NAME}?driver={MSSQL_DRIVER}"
+
+
+app.config['SQLALCHEMY_DATABASE_URI'] = f"mssql+pyodbc://{os.environ['MSSQL_DB_USERNAME']}:{os.environ['MSSQL_DB_PASSWORD']}@{os.environ['MSSQL_DB_SERVER']}/{os.environ['MSSQL_DB_NAME']}?driver={os.environ['MSSQL_DRIVER']}"
+#app.config['SQLALCHEMY_DATABASE_URI'] = f"mssql+pyodbc://{MSSQL_DB_USERNAME}:{MSSQL_DB_PASSWORD}@{MSSQL_DB_SERVER}/{MSSQL_DB_NAME}?driver={MSSQL_DRIVER}"
 db_item.init_app(app)
 
 # Connect to MongoDB
@@ -18,7 +24,7 @@ mongo_db = client.products
 collection = mongo_db[MONGO_COLLECTION]
 
 # Connect to Redis
-redis_client = redis.StrictRedis(host='127.0.0.1', port=6379, decode_responses=True)
+redis_client = redis.StrictRedis(host='redis', port=6379, decode_responses=True)
 
 # Helper function to fetch items from the database or Redis cache
 def get_items():
@@ -33,6 +39,7 @@ def get_items():
 
 # Helper function to fetch products from the database or Redis cache
 def get_products():
+    products_data = None
     products_data = redis_client.get('products')
     if products_data:
         return json.loads(products_data)
@@ -82,7 +89,7 @@ def update_product(product_id):
 
     result = collection.update_one({'_id': product_id}, {'$set': data})
     if result.modified_count == 1:
-        redis_client.delete('products')  # Invalidate cache
+        #redis_client.delete('products')  # Invalidate cache
         return jsonify({'message': 'Product updated successfully'})
     else:
         return jsonify({'error': 'Product not found'}), 404

@@ -1,0 +1,74 @@
+version: '3.11'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5003:5003"
+    depends_on:
+      - mongo_primary
+      - mongo_secondary1
+      - mongo_secondary2
+      - mongo_secondary3
+      - sql_server
+    environment:
+      - MONGO_CLIENT=mongodb+srv://stefanberestea:Acidlinn1@cluster0.sgguuht.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+      - MONGO_COLLECTION=products
+      - MSSQL_DB_USERNAME=sa1
+      - MSSQL_DB_PASSWORD=sa1
+      - MSSQL_DB_SERVER=sql_server  # Use the service name defined below
+      - MSSQL_DB_NAME=pad_table
+      - MSSQL_DRIVER=ODBC+Driver+17+for+SQL+Server
+
+  mongo_primary:
+    image: mongo:latest
+    command: ["mongod", "--bind_ip_all", "--dbpath=/data/db", "--replSet=rs0"]
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_primary_data:/data/db
+
+  mongo_secondary1:
+    image: mongo:latest
+    command: ["mongod", "--bind_ip_all", "--dbpath=/data/db", "--replSet=rs0"]
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo_secondary1_data:/data/db
+
+  mongo_secondary2:
+    image: mongo:latest
+    command: ["mongod", "--bind_ip_all", "--dbpath=/data/db", "--replSet=rs0"]
+    ports:
+      - "27019:27017"
+    volumes:
+      - mongo_secondary2_data:/data/db
+
+  mongo_secondary3:
+    image: mongo:latest
+    command: ["mongod", "--bind_ip_all", "--dbpath=/data/db", "--replSet=rs0"]
+    ports:
+      - "27021:27017"
+    volumes:
+      - mongo_secondary3_data:/data/db
+
+  sql_server:
+    image: mcr.microsoft.com/mssql/server:latest
+    environment:
+      SA_PASSWORD: "sa1sa1sa1"  # Change this to your desired password
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+
+volumes:
+  mongo_primary_data:
+  mongo_secondary1_data:
+  mongo_secondary2_data:
+  mongo_secondary3_data:
