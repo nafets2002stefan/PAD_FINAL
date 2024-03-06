@@ -8,7 +8,7 @@ This application is composed of several services, each running in its own Docker
 
 - **app**: Python Flask web service
 - **mongo**: MongoDB database
-- **sql_server**: Microsoft SQL Server database
+- **Postgres**: Postgres SQL database
 - **redis**: Redis caching server
 
 ## Usage
