@@ -44,8 +44,10 @@ or just clone this repository:
 
 5. Access the application in your web browser at [http://localhost:5003](http://localhost:5003).
 
-6. There are a lot of endpoints(7).Where you can see in Postman collection.
-    We have GET,POST /products, PUT /products/id
+6. There are a lot of endpoints(8).Where you can see in Postman collection.
+    IMPORTANT!!! First time running app, initialize DB, make GET request  http://localhost:5003/initialize
+
+    After that, we have GET,POST /products, PUT /products/id
     and GET,POST /items, PUT /items/id
     And the last method which is a transaction:
     POST for /transaction.
