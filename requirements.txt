@@ -3,4 +3,4 @@ pymongo
 flask_sqlalchemy
 sqlalchemy
 redis
-pyodbc
+psycopg2-binary

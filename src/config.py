@@ -1,8 +1,8 @@
-MSSQL_DB_USERNAME = 'sa1'
-MSSQL_DB_PASSWORD = 'sa1sa1sa1'
-MSSQL_DB_SERVER = 'DESKTOP-60K7NJF'
+MSSQL_DB_USERNAME = 'postgres'
+MSSQL_DB_PASSWORD = 'z92kP^fqlRL'
+MSSQL_DB_SERVER = 'postgresql'
 MSSQL_DB_NAME = 'pad_table'
-MSSQL_DRIVER = 'ODBC+Driver+17+for+SQL+Server'
+MSSQL_DB_PORT = 5432
 
 MONGO_CLIENT = 'mongodb+srv://stefanberestea:Acidlinn1@cluster0.sgguuht.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
 MONGO_COLLECTION = 'products'

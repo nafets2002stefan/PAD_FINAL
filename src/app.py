@@ -1,21 +1,29 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, make_response
 from bson.objectid import ObjectId
 from config import *
 from pymongo import MongoClient
-from item import *
+from flask_sqlalchemy import SQLAlchemy
 import redis
 import json
-import os  # Add this import statement
-
-# Change the SQLALCHEMY_DATABASE_URI to use the environment variables for Docker service
+from os import environ
 
 app = Flask(__name__)
 
-# Configure SQL Alchemy
+app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('DATABASE_URL')
+db = SQLAlchemy(app)
 
+class Item(db.Model):
+    __tablename__ = 'items'
 
-app.config['SQLALCHEMY_DATABASE_URI'] = f"mssql+pyodbc://{os.environ['MSSQL_DB_USERNAME']}:{os.environ['MSSQL_DB_PASSWORD']}@{os.environ['MSSQL_DB_SERVER']}/{os.environ['MSSQL_DB_NAME']}?driver={os.environ['MSSQL_DRIVER']}"
-db_item.init_app(app)
+    id = db.Column(db.Integer, primary_key = True)
+    name = db.Column(db.String(80), unique=False, nullable=False)
+    price = db.Column(db.Integer, unique=False, nullable=False)
+
+    def json(self):
+        return {'id': self.id, 'name':self.name, 'price': self.price}
+    
+#db.create_all()
+
 
 # Connect to MongoDB
 client = MongoClient(MONGO_CLIENT)
@@ -25,20 +33,7 @@ collection = mongo_db[MONGO_COLLECTION]
 # Connect to Redis
 redis_client = redis.StrictRedis(host='redis', port=6379, decode_responses=True)
 
-# Helper function to fetch items from the database or Redis cache
-def get_items():
-    items_data = redis_client.get('items')
-    if items_data:
-        return json.loads(items_data)
-    else:
-        items = Item.query.all()
-        items_list = [{'id': item.id, 'name': item.name, 'price': item.price} for item in items]
-        redis_client.set('items', json.dumps(items_list))
-        return items_list
-
-# Helper function to fetch products from the database or Redis cache
 def get_products():
-    products_data = None
     products_data = redis_client.get('products')
     if products_data:
         return json.loads(products_data)
@@ -47,31 +42,56 @@ def get_products():
         redis_client.set('products', json.dumps(products))
         return products
 
+def get_items():
+    items_data = redis_client.get('items')
+    if items_data:
+        return json.loads(items_data)
+    else:
+        items = Item.query.all()
+        serialized_items = [item.json() for item in items] 
+        redis_client.set('items', json.dumps(serialized_items))
+        return items
+    
+@app.route('/initialize', methods=['GET'])
+def initialize():
+    try:
+        db.create_all()
+        return make_response(jsonify({'message': 'Db initialized'}), 200)
+    except Exception as e:
+        return make_response(jsonify({'message': e}), 500)
+
 @app.route('/items', methods=['GET'])
 def get_items_route():
     items = get_items()
     return jsonify({'items': items})
 
-@app.route('/items/<int:item_id>', methods=['PUT'])
-def update_item(item_id):
-    item = Item.query.get_or_404(item_id)
-    data = request.get_json()
-    if 'name' in data:
-        item.name = data['name']
-    if 'price' in data:
-        item.price = data['price']
-    db_item.session.commit()
-    redis_client.delete('items')  # Invalidate cache
-    return jsonify({'message': 'Item updated successfully'})
+
+@app.route('/items/<int:id>', methods=['PUT'])
+def update_item(id):
+    try:
+        item = Item.query.filter_by(id=id).first()
+        if item:
+            data = request.get_json()
+            item.name = data['name']
+            item.price = data['price']
+            db.session.commit()
+            redis_client.delete('items')  # Invalidate cache
+            return make_response(jsonify({'message': 'Item updated successfully'}), 200)
+        return make_response(jsonify({'message': 'Item not found'}), 404)
+    except Exception as e:
+        return make_response(jsonify({'mesage' : 'error updating item'}), 500)
 
 @app.route('/items', methods=['POST'])
 def create_item():
-    data = request.get_json()
-    new_item = Item(name=data['name'], price=data['price'])
-    db_item.session.add(new_item)
-    db_item.session.commit()
-    redis_client.delete('items')  # Invalidate cache
-    return jsonify({'message': 'Item created successfully'})
+    try:
+        data = request.get_json()
+        new_item = Item(name=data['name'], price=data['price'])
+        db.session.add(new_item)
+        db.session.commit()
+        redis_client.delete('items')  # Invalidate cache
+        return make_response(jsonify({'message' : 'Item created successfully'}), 201)
+    except Exception as e:
+        return make_response(jsonify({'mesage' : 'error creating item'}), 500)
 
 @app.route('/products', methods=['GET'])
 def get_products_route():
@@ -106,11 +126,11 @@ def create_product():
 def two_phase_commit(data, item_id=None, product_id=None):
     try:
         # Start the transaction
-        with db_item.session.begin():
+        with db.session.begin():
             result = collection.insert_one(data)
             new_item = Item(name=data['name'], price=data['price'])
-            db_item.session.add(new_item) 
-            db_item.session.commit()  
+            db.session.add(new_item) 
+            db.session.commit()  
 
         # Invalidate cache
         redis_client.delete('items')
@@ -118,7 +138,7 @@ def two_phase_commit(data, item_id=None, product_id=None):
         
         return True, {'item_id': new_item.id, 'product_id': str(result.inserted_id)}
     except Exception as e:
-        db_item.session.rollback() 
+        db.session.rollback() 
         return False, str(e)
 
 @app.route('/transaction', methods=['POST'])

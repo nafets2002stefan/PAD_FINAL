@@ -2,25 +2,24 @@ version: '3.11'
 
 services:
   app:
+    container_name: app
+    image: francescoxx/flask_live_app:1.0.0
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - "5003:5003"
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgresql:5432/postgres
+      - MONGO_CLIENT=mongodb+srv://stefanberestea:Acidlinn1@cluster0.sgguuht.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+      - MONGO_COLLECTION=products
     depends_on:
       - mongo_primary
       - mongo_secondary1
       - mongo_secondary2
       - mongo_secondary3
-      - sql_server
-    environment:
-      - MONGO_CLIENT=mongodb+srv://stefanberestea:Acidlinn1@cluster0.sgguuht.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
-      - MONGO_COLLECTION=products
-      - MSSQL_DB_USERNAME=sa1
-      - MSSQL_DB_PASSWORD=sa1
-      - MSSQL_DB_SERVER=sql_server
-      - MSSQL_DB_NAME=pad_table
-      - MSSQL_DRIVER=ODBC+Driver+17+for+SQL+Server
+      - postgresql
+
 
   mongo_primary:
     image: mongo:latest
@@ -54,13 +53,17 @@ services:
     volumes:
       - mongo_secondary3_data:/data/db
 
-  sql_server:
-    image: mcr.microsoft.com/mssql/server:latest
+  postgresql:  # Change from sql_server to postgresql
+    container_name: postgresql
+    image: postgres:latest
     environment:
-      SA_PASSWORD: "sa1sa1sa1"
-      ACCEPT_EULA: "Y"
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
     ports:
-      - "1433:1433"
+      - "5432:5432" 
+    volumes:
+      - pgdata:/var/lib/postgresql/data
 
   redis:
     image: redis:latest
@@ -68,6 +71,7 @@ services:
       - "6379:6379"
 
 volumes:
+  pgdata: {}
   mongo_primary_data:
   mongo_secondary1_data:
   mongo_secondary2_data:
