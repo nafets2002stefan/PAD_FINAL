@@ -1,6 +1,5 @@
 from flask import Flask, jsonify, request, make_response
 from bson.objectid import ObjectId
-from config import *
 from pymongo import MongoClient
 from flask_sqlalchemy import SQLAlchemy
 import redis
@@ -22,13 +21,11 @@ class Item(db.Model):
     def json(self):
         return {'id': self.id, 'name':self.name, 'price': self.price}
     
-#db.create_all()
-
 
 # Connect to MongoDB
-client = MongoClient(MONGO_CLIENT)
+client = MongoClient(environ.get('MONGO_CLIENT'))
 mongo_db = client.products
-collection = mongo_db[MONGO_COLLECTION]
+collection = mongo_db[environ.get('MONGO_COLLECTION')]
 
 # Connect to Redis
 redis_client = redis.StrictRedis(host='redis', port=6379, decode_responses=True)

@@ -11,7 +11,7 @@ services:
       - "5003:5003"
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@postgresql:5432/postgres
-      - MONGO_CLIENT=mongodb+srv://stefanberestea:Acidlinn1@cluster0.sgguuht.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+      - MONGO_CLIENT=mongodb://mongo_primary:27017/products
       - MONGO_COLLECTION=products
     depends_on:
       - mongo_primary
@@ -23,7 +23,7 @@ services:
 
   mongo_primary:
     image: mongo:latest
-    command: ["mongod", "--bind_ip_all", "--dbpath=/data/db", "--replSet=rs0"]
+    command: ["mongod", "--bind_ip_all", "--dbpath=/data/db", "--oplogSize=100"]
     ports:
       - "27017:27017"
     volumes:
@@ -31,7 +31,7 @@ services:
 
   mongo_secondary1:
     image: mongo:latest
-    command: ["mongod", "--bind_ip_all", "--dbpath=/data/db", "--replSet=rs0"]
+    command: ["mongod", "--bind_ip_all", "--dbpath=/data/db", "--oplogSize=100"]
     ports:
       - "27018:27017"
     volumes:
@@ -39,7 +39,7 @@ services:
 
   mongo_secondary2:
     image: mongo:latest
-    command: ["mongod", "--bind_ip_all", "--dbpath=/data/db", "--replSet=rs0"]
+    command: ["mongod", "--bind_ip_all", "--dbpath=/data/db", "--oplogSize=100"]
     ports:
       - "27019:27017"
     volumes:
@@ -47,9 +47,9 @@ services:
 
   mongo_secondary3:
     image: mongo:latest
-    command: ["mongod", "--bind_ip_all", "--dbpath=/data/db", "--replSet=rs0"]
+    command: ["mongod", "--bind_ip_all", "--dbpath=/data/db", "--oplogSize=100"]
     ports:
-      - "27021:27017"
+      - "27020:27017"
     volumes:
       - mongo_secondary3_data:/data/db
 
