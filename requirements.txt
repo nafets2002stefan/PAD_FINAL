@@ -1,6 +1,4 @@
 flask
 pymongo
 flask_sqlalchemy
-sqlalchemy
 redis
-psycopg2-binary

@@ -3,10 +3,7 @@ version: '3.11'
 services:
   app:
     container_name: app
-    image: francescoxx/flask_live_app:1.0.0
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: nafets2002/my-app-image:app_latest
     ports:
       - "5003:5003"
     environment:
